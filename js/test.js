@@ -1,81 +1,92 @@
-var fullname = document.getElementById('fullName').value;
-var phoneNumber = document.getElementById('phoneNumber').value;
-var error = document.getElementById('error');
-var nextOfKin = document.getElementById('nextOfKin').value;
-var carPlateNumber = document.getElementById('plateNumber').value;
-var carColor = document.getElementById('carColor').value;
+const fullname = document.getElementById('fullName')
+const phoneNumber = document.getElementById('phoneNumber')
+const nextOfKin = document.getElementById('nextOfKin')
+const nextPhoneNumber = document.getElementById('nextPhoneNumber')
+const carPlateNumber = document.getElementById('plateNumber')
+const carColor = document.getElementById('carColor')
+const carModel = document.getElementById('carModel')
+const carChassis = document.getElementById('carChassis')
 const fullNameError = document.getElementById("fullNameError")
+const phoneError = document.getElementById("phoneError")
+const nextOfKinError = document.getElementById("nextOfKinError")
+const nextOfKinPhoneError = document.getElementById("nextOfKinPhoneError")
+const carPlateError = document.getElementById("carPlateError")
+const carColorError = document.getElementById("carColorError")
+const carModelError = document.getElementById("carModelError")
+const carChassisError = document.getElementById("carChassisError")
+const form = document.getElementById("myform")
 
 function validate() {
-    fullNameError.innerHTML = ""
-    const regTestName = /^[a-z]+$/i;
-    const regNextOfKin = /^[A-Z][a-z] $/;
-    const regPlateNumber = /^A-ZA-ZA-Z[-]0-90-90-9A-Z $/;
+    // fullNameError.innerHTML = ""
+    const regFullname = /^[a-zA-Z][a-zA-Z\s]*$/
+    const regNextOfKin = /^[a-zA-Z][a-zA-Z\s]*$/
+    const regPlateNumber = /^A-ZA-ZA-Z[-]0-90-90-9A-Z $/
 
-
-    // var errorIndex = [];
-    if (!regTestName.test(fullname)) {
-        fullNameError.innerHTML = 'Name must Contain Letters Only'
-        // errorIndex.push('Name must Contain Letters Only');
-        // error.innerHTML = errorIndex[0];
+    let errors = 0
+    if (!regFullname.test(fullname.value)) {
+        fullNameError.innerHTML = 'Fullname can only contain letters and spaces'
+        errors++
     } else {
         fullNameError.innerHTML = ""
     }
 
-    // } else if (!regNextOfKin.test(nextOfKin)) {
-    //     errorIndex.push('Next Must Contain Only letters');
-    //     error.innerHTML = errorIndex[1];
-    // } else if (phoneNumber > 11) {
-    //     errorIndex.push('Phone Number Must Contain 11 digits Only');
-    //     error.innerHTML = errorIndex[2];
-    // } else if (phoneNumber < 11) {
-    //     errorIndex.push('Phone Number must be 11 digits only');
-    //     error.innerHTML = errorIndex[3];
-    // } else if (carPlateNumber.length > 9 || carPlateNumber.length < 9) {
-    //     errorIndex.push('Plate Number Length is incorrect');
-    //     error.innerHTML = errorIndex[4];
-    // } else if (!regPlateNumber.test(plateNumber)) {
-    //     errorIndex.push('Plate Number is incorrect');
-    //     error.innerHTML = errorIndex[5];
-    // }
+    if (!regNextOfKin.test(nextOfKin.value)) {
+        nextOfKinError.innerHTML = 'Next of kin can only contain letters and spaces'
+        errors++
+    } else {
+        nextOfKinError.innerHTML = ""
+    }
 
+    if (phoneNumber.value.length > 11 || phoneNumber.value.length < 11) {
+        phoneError.innerHTML = 'Phone Number Must Contain 11 digits Only'
+        errors++
+    } else {
+        phoneError.innerHTML = ""
+    }
+
+    if (nextPhoneNumber.value.length > 11 || nextPhoneNumber.value.length < 11) {
+        nextOfKinPhoneError.innerHTML = 'Phone Number Must Contain 11 digits Only'
+        errors++
+    } else {
+        nextOfKinPhoneError.innerHTML = ""
+    }
+
+    if (carPlateNumber.value.length > 9 || carPlateNumber.value.length < 9) {
+        carPlateError.innerHTML = 'Plate number must contain 9 characters only'
+        errors++
+    } else {
+        carPlateError.innerHTML = ""
+    }
+
+    if (!regPlateNumber.test(carPlateNumber.value)) {
+        carPlateError.innerHTML = 'Plate Number is incorrect'
+        errors++
+    } else {
+        carPlateError.innerHTML = ""
+    }
+
+    if (carColor.value == "") {
+        carColorError.innerHTML = "Car color is required"
+        errors++
+    } else {
+        carColorError.innerHTML = ""
+    }
+
+    if (carModel.value == "") {
+        carModelError.innerHTML = "Car model is required"
+        errors++
+    } else {
+        carModelError.innerHTML = ""
+    }
+
+    if (carChassis.value == "") {
+        carChassisError.innerHTML = "Car chassis number is required"
+        errors++
+    } else {
+        carChassisError.innerHTML = ""
+    }
+
+    if (errors < 1) {
+        form.submit()
+    }
 }
-// const myform = document.getElementById("myform")
-// myform.onsubmit(e => {
-//     e.preventDefault()
-//     console.log('submitted')
-// })
-// function validateTest(){
-//     validateTest.preventDefault();
-
-//     var testName = /^[A-Z][a-b] $/;
-//     var nextOfKin = /^[A-Z][a-b] $/;
-//     var plateNumber = /^A-ZA-ZA-Z[-]0-90-90-9A-Z $/;
-
-
-//     var errorIndex = [];
-//     if(!fullname.match(testName)){
-//         errorIndex.push('Name must Contain Letters Only');
-//         error.innerHTML = errorIndex[0];
-
-//     }else if(!nextOfKin.match(nextOfKin)){
-//         errorIndex.push('Next Must Contain Only letters');
-//         error.innerHTML = errorIndex[1];
-//     }else if(phoneNumber > 11){
-//         errorIndex.push('Phone Number Must Contain 11 digits Only');
-//         error.innerHTML = errorIndex[2];
-//     }else if(phoneNumber < 11){
-//         errorIndex.push('Phone Number must be 11 digits only');
-//         error.innerHTML = errorIndex[3];
-//     }else if(carPlateNumber > 9 || carPlateNumber < 9){
-//         errorIndex.push('Plate Number Length is incorrect');
-//         error.innerHTML = errorIndex[4];
-//     }else if(!carPlateNumber.match(plateNumber)){
-//         errorIndex.push('Plate Number is incorrect');
-//         error.innerHTML = errorIndex[5];
-//     }
-
-
-
-
-// }
